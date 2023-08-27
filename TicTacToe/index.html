@@ -5,33 +5,37 @@
     <meta charset="UTF-8">
     <title>Крестики-нолики</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
-
-    <h1>Крестики-нолики</h1>
-    <table>
-        <tr>
-            <td class="cell" id="0"></td>
-            <td class="cell" id="1"></td>
-            <td class="cell" id="2"></td>
-        </tr>
-        <tr>
-            <td class="cell" id="3"></td>
-            <td class="cell" id="4"></td>
-            <td class="cell" id="5"></td>
-        </tr>
-        <tr>
-            <td class="cell" id="6"></td>
-            <td class="cell" id="7"></td>
-            <td class="cell" id="8"></td>
-        </tr>
-    </table>
-    <div class="endgame">
-        <div class="text"></div>
+    <div class="container">
+        <h1>Крестики-нолики</h1>
+        <div class="game-board">
+            <table>
+                <tr>
+                    <td class="cell" id="0"></td>
+                    <td class="cell" id="1"></td>
+                    <td class="cell" id="2"></td>
+                </tr>
+                <tr>
+                    <td class="cell" id="3"></td>
+                    <td class="cell" id="4"></td>
+                    <td class="cell" id="5"></td>
+                </tr>
+                <tr>
+                    <td class="cell" id="6"></td>
+                    <td class="cell" id="7"></td>
+                    <td class="cell" id="8"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="controls">
+            <button class="reset-button" onClick="startGame()">Заново</button>
+        </div>
+        <div class="endgame">
+            <div class="text"></div>
+        </div>
     </div>
-    <button onClick="startGame()">Заново</button>
     <script src="script.js"></script>
 </body>
 
