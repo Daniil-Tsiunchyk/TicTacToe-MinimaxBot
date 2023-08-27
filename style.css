@@ -125,6 +125,7 @@ header h1 {
     /* red */
     color: white;
 }
+
 /* Symbol Selection */
 .symbol-selection {
     margin-top: 20px;
@@ -145,7 +146,7 @@ header h1 {
     height: 34px;
 }
 
-.switch input { 
+.switch input {
     display: none;
 }
 
@@ -172,13 +173,14 @@ header h1 {
     transition: 0.4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #2196F3;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     transform: translateX(26px);
 }
+
 /* Стили сайдбара */
 .sidebar {
     height: 100%;
@@ -194,7 +196,9 @@ input:checked + .slider:before {
     color: white;
 }
 
-.sidebar h2, .sidebar p, .sidebar button {
+.sidebar h2,
+.sidebar p,
+.sidebar button {
     margin: 15px;
 }
 

@@ -159,7 +159,7 @@ function toggleSymbol() {
     const isChecked = document.getElementById('symbol-toggle').checked;
     const currentSymbol = isChecked ? 'O' : 'X';
     document.getElementById('currentSymbol').innerText = currentSymbol;
-    chooseSymbol(currentSymbol);  
+    chooseSymbol(currentSymbol);
 }
 
 
