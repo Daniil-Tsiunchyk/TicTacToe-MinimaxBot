@@ -1,6 +1,14 @@
 var origBoard;
-const huPlayer = 'X';
-const aiPlayer = 'O';
+let huPlayer = 'X'; 
+let aiPlayer = 'O'; 
+
+function chooseSymbol(symbol) {
+    huPlayer = symbol;
+    aiPlayer = symbol === 'X' ? 'O' : 'X';
+    document.getElementById("currentSymbol").innerText = huPlayer;
+    startGame();
+}
+
 const winCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -16,6 +24,7 @@ const cells = document.querySelectorAll('.cell');
 startGame();
 
 function startGame() {
+    document.getElementById("currentSymbol").innerText = huPlayer;
     document.querySelector(".endgame").style.display = "none";
     origBoard = Array.from(Array(9).keys());
     for (var i = 0; i < cells.length; i++) {

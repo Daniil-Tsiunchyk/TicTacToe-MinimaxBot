@@ -58,3 +58,14 @@
     color: white;
     font-size: 2em;
 }
+
+.symbol-selection,
+.current-symbol {
+    margin-top: 20px;
+}
+
+.symbol-selection button {
+    padding: 5px 10px;
+    margin-left: 5px;
+    font-size: 16px;
+}

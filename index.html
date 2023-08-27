@@ -10,6 +10,14 @@
 <body>
     <div class="container">
         <h1>Крестики-нолики</h1>
+        <div class="symbol-selection">
+            <span>Выберите символ: </span>
+            <button id="chooseX" onClick="chooseSymbol('X')">X</button>
+            <button id="chooseO" onClick="chooseSymbol('O')">O</button>
+        </div>
+        <div class="current-symbol">
+            <span>Текущий символ: <span id="currentSymbol">X</span></span>
+        </div>
         <div class="game-board">
             <table>
                 <tr>
