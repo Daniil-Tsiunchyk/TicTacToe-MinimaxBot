@@ -1,8 +1,39 @@
 /* Global styles */
+body,
+main,
+header,
+section {
+    margin: 0;
+    padding: 0;
+}
+
 .container {
     width: 80%;
     margin: auto;
     text-align: center;
+}
+
+/* Header */
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+/* Score board */
+.score-board {
+    margin-top: 20px;
+    font-size: 1.5em;
+}
+
+.score-board ul {
+    list-style: none;
+}
+
+/* Symbol Selection */
+.symbol-selection h2,
+.symbol-selection p {
+    margin-top: 20px;
+    font-size: 1.2em;
 }
 
 /* Table styles */
@@ -16,7 +47,6 @@
     border: 3px solid #333;
     height: 120px;
     width: 120px;
-    text-align: center;
     vertical-align: middle;
     font-family: "Arial", sans-serif;
     font-size: 80px;
@@ -29,7 +59,8 @@
 }
 
 /* Button styles */
-.reset-button {
+.reset-button,
+.symbol-selection button {
     padding: 10px 20px;
     font-size: 16px;
     margin-top: 20px;
@@ -53,19 +84,131 @@
     margin-top: 20px;
     background-color: rgba(205, 133, 63, 0.8);
     padding: 20px;
-    text-align: center;
     border-radius: 5px;
     color: white;
     font-size: 2em;
 }
 
-.symbol-selection,
-.current-symbol {
+.endgame h2 {
+    font-size: 1.5em;
+}
+
+/* Score board */
+.score-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
     margin-top: 20px;
 }
 
-.symbol-selection button {
-    padding: 5px 10px;
-    margin-left: 5px;
-    font-size: 16px;
+.score-item {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.5em;
+}
+
+#wins-container {
+    background-color: #4CAF50;
+    /* green */
+    color: white;
+}
+
+#draws-container {
+    background-color: #FFC107;
+    /* amber */
+    color: white;
+}
+
+#losses-container {
+    background-color: #F44336;
+    /* red */
+    color: white;
+}
+/* Symbol Selection */
+.symbol-selection {
+    margin-top: 20px;
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input { 
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 34px;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+/* Стили сайдбара */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    color: white;
+}
+
+.sidebar h2, .sidebar p, .sidebar button {
+    margin: 15px;
+}
+
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 36px;
+    margin-left: 50px;
+    background: none;
+    border: none;
+    color: white;
+}
+
+.closebtn:focus {
+    outline: none;
 }

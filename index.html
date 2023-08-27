@@ -8,17 +8,37 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>Крестики-нолики</h1>
-        <div class="symbol-selection">
-            <span>Выберите символ: </span>
-            <button id="chooseX" onClick="chooseSymbol('X')">X</button>
-            <button id="chooseO" onClick="chooseSymbol('O')">O</button>
-        </div>
-        <div class="current-symbol">
-            <span>Текущий символ: <span id="currentSymbol">X</span></span>
-        </div>
-        <div class="game-board">
+    <main class="container">
+        <header>
+            <h1>Крестики-нолики</h1>
+        </header>
+
+        <section class="score-board">
+            <div class="score-item" id="wins-container">
+                <span>Победы: </span><span id="wins">0</span>
+            </div>
+            <div class="score-item" id="draws-container">
+                <span>Ничьи: </span><span id="draws">0</span>
+            </div>
+            <div class="score-item" id="losses-container">
+                <span>Поражения: </span><span id="losses">0</span>
+            </div>
+        </section>
+
+
+        <section class="symbol-selection">
+            <div class="toggle-container">
+                <label class="switch">
+                    <input type="checkbox" id="symbol-toggle" onClick="toggleSymbol()">
+                    <span class="slider"></span>
+                </label>
+                <span>Текущий символ: <span id="currentSymbol">X</span></span>
+            </div>
+        </section>
+
+
+        <section class="game-board">
+            <h2>Игровое поле</h2>
             <table>
                 <tr>
                     <td class="cell" id="0"></td>
@@ -36,15 +56,15 @@
                     <td class="cell" id="8"></td>
                 </tr>
             </table>
-        </div>
-        <div class="controls">
+        </section>
+
+        <section class="controls">
             <button class="reset-button" onClick="startGame()">Заново</button>
-        </div>
-        <div class="endgame">
-            <div class="text"></div>
-        </div>
-    </div>
+        </section>
+
+    </main>
     <script src="script.js"></script>
+ 
 </body>
 
 </html>

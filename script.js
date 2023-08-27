@@ -1,6 +1,6 @@
 var origBoard;
-let huPlayer = 'X'; 
-let aiPlayer = 'O'; 
+let huPlayer = 'X';
+let aiPlayer = 'O';
 
 function chooseSymbol(symbol) {
     huPlayer = symbol;
@@ -25,7 +25,6 @@ startGame();
 
 function startGame() {
     document.getElementById("currentSymbol").innerText = huPlayer;
-    document.querySelector(".endgame").style.display = "none";
     origBoard = Array.from(Array(9).keys());
     for (var i = 0; i < cells.length; i++) {
         cells[i].innerText = '';
@@ -69,12 +68,7 @@ function gameOver(gameWon) {
     for (var i = 0; i < cells.length; i++) {
         cells[i].removeEventListener('click', turnClick, false);
     }
-    declareWinner(gameWon.player == huPlayer ? "Вы выиграли!" : "Вы проиграли.");
-}
-
-function declareWinner(who) {
-    document.querySelector(".endgame").style.display = "block";
-    document.querySelector(".endgame .text").innerText = who;
+    updateScoreBoard(gameWon.player == huPlayer ? "win" : "loss");
 }
 
 function emptySquares() {
@@ -91,7 +85,7 @@ function checkTie() {
             cells[i].style.backgroundColor = "green";
             cells[i].removeEventListener('click', turnClick, false);
         }
-        declareWinner("Ничья!")
+        updateScoreBoard("draw");
         return true;
     }
     return false;
@@ -143,4 +137,37 @@ function minimax(newBoard, player) {
         }
     }
     return moves[bestMove];
+}
+let wins = 0;
+let losses = 0;
+let draws = 0;
+
+function updateScoreBoard(result) {
+    if (result === 'win') {
+        wins++;
+        document.getElementById("wins").innerText = wins;
+    } else if (result === 'loss') {
+        losses++;
+        document.getElementById("losses").innerText = losses;
+    } else if (result === 'draw') {
+        draws++;
+        document.getElementById("draws").innerText = draws;
+    }
+}
+
+function toggleSymbol() {
+    const isChecked = document.getElementById('symbol-toggle').checked;
+    const currentSymbol = isChecked ? 'O' : 'X';
+    document.getElementById('currentSymbol').innerText = currentSymbol;
+    chooseSymbol(currentSymbol);  
+}
+
+
+function toggleSidebar() {
+    const sidebar = document.getElementById("symbolSidebar");
+    if (sidebar.style.width === "0px" || sidebar.style.width === "") {
+        sidebar.style.width = "250px";
+    } else {
+        sidebar.style.width = "0";
+    }
 }
