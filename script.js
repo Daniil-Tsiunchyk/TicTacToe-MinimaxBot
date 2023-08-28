@@ -42,7 +42,9 @@ function turnClick(square) {
 
 function turn(squareId, player) {
     origBoard[squareId] = player;
-    document.getElementById(squareId).innerText = player;
+    const cell = document.getElementById(squareId);
+    cell.innerText = player;
+    cell.classList.add("fade-in");
     let gameWon = checkWin(origBoard, player)
     if (gameWon) gameOver(gameWon)
 }
@@ -170,4 +172,12 @@ function toggleSidebar() {
     } else {
         sidebar.style.width = "0";
     }
+}
+function resetScoreBoard() {
+    wins = 0;
+    losses = 0;
+    draws = 0;
+    document.getElementById("wins").innerText = wins;
+    document.getElementById("losses").innerText = losses;
+    document.getElementById("draws").innerText = draws;
 }
