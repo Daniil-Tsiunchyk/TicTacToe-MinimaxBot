@@ -8,38 +8,34 @@
 </head>
 
 <body>
+    <!-- Main Container -->
     <main class="container">
+
+        <!-- Header Section -->
         <header>
             <h1>Крестики-нолики</h1>
         </header>
 
+        <!-- Score Board -->
         <section class="score-board">
-            <div class="score-item" id="wins-container">
-                <span>Победы: </span><span id="wins">0</span>
-            </div>
-            <div class="score-item" id="draws-container">
-                <span>Ничьи: </span><span id="draws">0</span>
-            </div>
-            <div class="score-item" id="losses-container">
-                <span>Поражения: </span><span id="losses">0</span>
-            </div>
+            <div class="score-item" id="wins-container"><span>Победы: </span><span id="wins">0</span></div>
+            <div class="score-item" id="draws-container"><span>Ничьи: </span><span id="draws">0</span></div>
+            <div class="score-item" id="losses-container"><span>Поражения: </span><span id="losses">0</span></div>
             <div class="reset-container">
                 <div class="reset-button" onclick="resetScoreBoard()" title="Сбросить счет"></div>
             </div>
         </section>
 
-
+        <!-- Symbol Selection -->
         <section class="symbol-selection">
             <div class="toggle-container">
-                <label class="switch">
-                    <input type="checkbox" id="symbol-toggle" onClick="toggleSymbol()">
-                    <span class="slider"></span>
-                </label>
+                <label class="switch"><input type="checkbox" id="symbol-toggle" onClick="toggleSymbol()"><span
+                        class="slider"></span></label>
                 <span>Текущий символ: <span id="currentSymbol">X</span></span>
             </div>
         </section>
 
-
+        <!-- Game Board -->
         <section class="game-board">
             <h2>Игровое поле</h2>
             <table>
@@ -61,13 +57,15 @@
             </table>
         </section>
 
+        <!-- Controls -->
         <section class="controls">
             <button class="vivid-reset-button" onClick="startGame()">Заново</button>
         </section>
 
     </main>
-    <script src="script.js"></script>
 
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 </body>
 
 </html>
