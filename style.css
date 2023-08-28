@@ -55,8 +55,7 @@ header h1 {
 /* Table styles */
 .game-board table {
     border-collapse: collapse;
-    margin: auto;
-    margin-top: 20px;
+    margin: 20px auto auto;
 }
 
 .game-board td {
@@ -90,23 +89,6 @@ header h1 {
 
 .reset-button:hover {
     background-color: #0056b3;
-}
-
-/* Endgame styles */
-.endgame {
-    display: none;
-    width: 80%;
-    margin: auto;
-    margin-top: 20px;
-    background-color: rgba(205, 133, 63, 0.8);
-    padding: 20px;
-    border-radius: 5px;
-    color: white;
-    font-size: 2em;
-}
-
-.endgame h2 {
-    font-size: 1.5em;
 }
 
 /* Score board */
@@ -189,54 +171,6 @@ input:checked+.slider {
 
 input:checked+.slider:before {
     transform: translateX(26px);
-}
-
-/* Стили сайдбара */
-.sidebar {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-    color: white;
-}
-
-.sidebar h2,
-.sidebar p,
-.sidebar button {
-    margin: 15px;
-}
-
-.closebtn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 36px;
-    margin-left: 50px;
-    background: none;
-    border: none;
-    color: white;
-}
-
-.closebtn:focus {
-    outline: none;
-}
-
-.fade-in {
-    opacity: 0;
-    animation: fadeIn ease 0.5s;
-    animation-fill-mode: forwards;
-}
-
-@keyframes fadeIn {
-    100% {
-        opacity: 1;
-    }
 }
 
 .reset-container {

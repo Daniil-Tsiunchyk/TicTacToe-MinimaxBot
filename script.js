@@ -1,4 +1,5 @@
-let originalBoard;
+// Global variables
+let origBoard;
 let humanPlayer = 'X';
 let computerPlayer = 'O';
 let wins = 0;
@@ -18,148 +19,142 @@ const winningCombinations = [
 
 const cells = document.querySelectorAll('.cell');
 
+// Initialization
 startGame();
 
+// UI functions
+function toggleSymbol() {
+    const isChecked = document.getElementById('symbol-toggle').checked;
+    const currentSymbol = isChecked ? 'O' : 'X';
+    document.getElementById('currentSymbol').innerText = currentSymbol;
+    chooseSymbol(currentSymbol);
+}
+
+function updateScoreBoard(result) {
+    if (result === 'win') wins++;
+    if (result === 'loss') losses++;
+    if (result === 'draw') draws++;
+
+    document.getElementById("wins").innerText = wins;
+    document.getElementById("losses").innerText = losses;
+    document.getElementById("draws").innerText = draws;
+}
+
+function resetScoreBoard() {
+    wins = losses = draws = 0;
+    updateScoreBoard(null);
+}
+// Game logic functions
 function startGame() {
     document.getElementById("currentSymbol").innerText = humanPlayer;
-    originalBoard = Array.from(Array(9).keys());
-    cells.forEach((cell, index) => {
+    origBoard = Array.from(Array(9).keys());
+    cells.forEach((cell) => {
         cell.innerText = '';
         cell.style.removeProperty('background-color');
         cell.addEventListener('click', turnClick, false);
     });
 }
 
-function turnClick(event) {
-    const squareId = event.target.id;
-    if (typeof originalBoard[squareId] === 'number') {
-        makeMove(squareId, humanPlayer);
-        if (!checkWin(originalBoard, humanPlayer) && !checkTie()) {
-            makeMove(findBestMove(), computerPlayer);
-        }
+function turnClick(square) {
+    if (typeof origBoard[square.target.id] === 'number') {
+        turn(square.target.id, humanPlayer);
+        if (!checkWin(origBoard, humanPlayer) && !checkTie()) turn(bestSpot(), computerPlayer);
     }
 }
 
-function makeMove(squareId, player) {
-    originalBoard[squareId] = player;
+function turn(squareId, player) {
+    origBoard[squareId] = player;
     document.getElementById(squareId).innerText = player;
-    const gameWon = checkWin(originalBoard, player);
-    if (gameWon) {
-        endGame(gameWon);
-    }
+    if (checkWin(origBoard, player)) gameOver(checkWin(origBoard, player));
 }
 
 function checkWin(board, player) {
-    const playedCells = board.reduce((acc, cell, index) => (cell === player ? [...acc, index] : acc), []);
-    let gameWon = null;
-
-    for (const [index, win] of winningCombinations.entries()) {
-        if (win.every(cell => playedCells.includes(cell))) {
-            gameWon = { index, player };
-            break;
-        }
+    const plays = board.reduce((a, e, i) => (e === player) ? a.concat(i) : a, []);
+    for (let [index, win] of winningCombinations.entries()) {
+        if (win.every(elem => plays.includes(elem))) return { index, player };
     }
-    return gameWon;
+    return null;
 }
 
-function endGame(gameWon) {
-    for (const index of winningCombinations[gameWon.index]) {
-        document.getElementById(index).style.backgroundColor = gameWon.player === humanPlayer ? 'blue' : 'red';
-    }
+function gameOver(gameWon) {
+    winningCombinations[gameWon.index].forEach(index => {
+        document.getElementById(index).style.backgroundColor = (gameWon.player === humanPlayer) ? "blue" : "red";
+    });
     cells.forEach(cell => cell.removeEventListener('click', turnClick, false));
-    updateScoreBoard(gameWon.player === humanPlayer ? 'win' : 'loss');
+    updateScoreBoard(gameWon.player === humanPlayer ? "win" : "loss");
 }
-
-
-function updateScoreBoard(result) {
-    if (result === 'win') {
-        wins++;
-        document.getElementById('wins').innerText = wins;
-    } else if (result === 'loss') {
-        losses++;
-        document.getElementById('losses').innerText = losses;
-    } else if (result === 'draw') {
-        draws++;
-        document.getElementById('draws').innerText = draws;
-    }
-}
-
 
 function emptySquares() {
-    return originalBoard.filter(cell => typeof cell === 'number');
+    return origBoard.filter(s => typeof s === 'number');
 }
 
-function findBestMove() {
-    return minimax(originalBoard, computerPlayer).index;
+function bestSpot() {
+    return minimax(origBoard, computerPlayer).index;
 }
 
 function checkTie() {
     if (emptySquares().length === 0) {
         cells.forEach(cell => {
-            cell.style.backgroundColor = 'green';
+            cell.style.backgroundColor = "green";
             cell.removeEventListener('click', turnClick, false);
         });
-        updateScoreBoard('draw');
+        updateScoreBoard("draw");
         return true;
     }
     return false;
 }
 
 function minimax(newBoard, player) {
-    const availableSpots = emptySquares(newBoard);
+    var availSpots = emptySquares();
 
     if (checkWin(newBoard, humanPlayer)) {
         return { score: -10 };
-    }
-    if (checkWin(newBoard, computerPlayer)) {
+    } else if (checkWin(newBoard, computerPlayer)) {
         return { score: 10 };
-    }
-    if (availableSpots.length === 0) {
+    } else if (availSpots.length === 0) {
         return { score: 0 };
     }
 
-    const moves = availableSpots.map(spot => {
-        const move = { index: spot };
-        newBoard[spot] = player;
+    var moves = [];
+    for (var i = 0; i < availSpots.length; i++) {
+        var move = {};
+        move.index = newBoard[availSpots[i]];
+        newBoard[availSpots[i]] = player;
 
-        if (player === computerPlayer) {
-            move.score = minimax(newBoard, humanPlayer).score;
+        if (player == computerPlayer) {
+            var result = minimax(newBoard, humanPlayer);
+            move.score = result.score;
         } else {
-            move.score = minimax(newBoard, computerPlayer).score;
+            var result = minimax(newBoard, computerPlayer);
+            move.score = result.score;
         }
-
-        newBoard[spot] = move.index;
-        return move;
-    });
-
-    const bestMove = moves.reduce((best, move) => {
-        const condition = player === computerPlayer
-            ? move.score > (best.score || -Infinity)
-            : move.score < (best.score || Infinity);
-        return condition ? move : best;
-    }, {});
-
-    return bestMove;
+        newBoard[availSpots[i]] = move.index;
+        moves.push(move);
+    }
+    var bestMove;
+    if (player === computerPlayer) {
+        var bestScore = -10000;
+        for (var i = 0; i < moves.length; i++) {
+            if (moves[i].score > bestScore) {
+                bestScore = moves[i].score;
+                bestMove = i;
+            }
+        }
+    } else {
+        var bestScore = 10000;
+        for (var i = 0; i < moves.length; i++) {
+            if (moves[i].score < bestScore) {
+                bestScore = moves[i].score;
+                bestMove = i;
+            }
+        }
+    }
+    return moves[bestMove];
 }
-
-function toggleSymbol() {
-    const isChecked = document.getElementById('symbol-toggle').checked;
-    const newSymbol = isChecked ? 'O' : 'X';
-    document.getElementById('currentSymbol').innerText = newSymbol;
-    chooseSymbol(newSymbol);
-}
-
+// Player settings
 function chooseSymbol(symbol) {
     humanPlayer = symbol;
-    computerPlayer = symbol === 'X' ? 'O' : 'X';
+    computerPlayer = (symbol === 'X') ? 'O' : 'X';
+    document.getElementById("currentSymbol").innerText = humanPlayer;
     startGame();
-}
-
-function resetScoreBoard() {
-    wins = 0;
-    losses = 0;
-    draws = 0;
-    document.getElementById('wins').innerText = wins;
-    document.getElementById('losses').innerText = losses;
-    document.getElementById('draws').innerText = draws;
 }
