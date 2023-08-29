@@ -68,13 +68,34 @@ header h1 {
 
 .game-board td {
     border: 3px solid #333;
-    height: 120px;
-    width: 120px;
+    height: 114px;
+    width: 114px;
+    padding: 3px;
     vertical-align: middle;
     font-family: "Arial", sans-serif;
     font-size: 80px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.game-board td:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.game-board tr:first-child td {
+    border-top: none;
+}
+
+.game-board tr:last-child td {
+    border-bottom: none;
+}
+
+.game-board td:first-child {
+    border-left: none;
+}
+
+.game-board td:last-child {
+    border-right: none;
 }
 
 .game-board td:hover {
@@ -95,9 +116,6 @@ header h1 {
 .reset-button:hover i.fas {
     color: #45a049;
 }
-
-
-
 
 /* Score board */
 .score-board {
