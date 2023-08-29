@@ -20,36 +20,43 @@
             <li><i class="fab fa-vk"></i> <a href="https://vk.com/neural_enigma" target="_blank">VK</a></li>
         </ul>
         <h3>Статья, которая меня вдохновила:</h3>
-        <li><a href="https://thecode.media/tic-tac-toe/?utm_source=vk&utm_medium=social&utm_campaign=post"
-                target="_blank"> Крестики-нолики на JavaScript</a></p>
+        <ul>
+            <li><a href="https://thecode.media/tic-tac-toe/?utm_source=vk&utm_medium=social&utm_campaign=post"
+                    target="_blank"> Крестики-нолики на JavaScript</a></li>
+        </ul>
+        <div class="toggle-container">
+            <label class="switch"><input type="checkbox" id="symbol-toggle" onClick="toggleSymbol()"><span
+                    class="slider"></span></label>
+            <span>Текущий символ: <span id="currentSymbol">X</span></span>
+        </div>
     </aside>
 
     <!-- Main Container -->
     <main class="container">
-
         <!-- Header Section -->
         <header>
             <h1>Крестики-нолики</h1>
+
         </header>
 
         <!-- Score Board -->
         <section class="score-board">
-            <div class="score-item" id="wins-container"><span>Победы: </span><span id="wins">0</span></div>
-            <div class="score-item" id="draws-container"><span>Ничьи: </span><span id="draws">0</span></div>
-            <div class="score-item" id="losses-container"><span>Поражения: </span><span id="losses">0</span></div>
+            <div class="score-item" id="wins-container"><span>Победы: </span><span class="score-value"
+                    id="wins">0</span></div>
+            <div class="score-item" id="draws-container"><span>Ничьи: </span><span class="score-value"
+                    id="draws">0</span></div>
+            <div class="score-item" id="losses-container"><span>Поражения: </span><span class="score-value"
+                    id="losses">0</span></div>
             <div class="reset-container">
-                <div class="reset-button" onclick="resetScoreBoard()" title="Сбросить счет"></div>
+                <button class="reset-button" onclick="resetScoreBoard()" title="Сбросить счет">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
             </div>
+
         </section>
 
         <!-- Symbol Selection -->
-        <section class="symbol-selection">
-            <div class="toggle-container">
-                <label class="switch"><input type="checkbox" id="symbol-toggle" onClick="toggleSymbol()"><span
-                        class="slider"></span></label>
-                <span>Текущий символ: <span id="currentSymbol">X</span></span>
-            </div>
-        </section>
+
 
         <!-- Game Board -->
         <section class="game-board">
@@ -79,6 +86,8 @@
         </section>
 
     </main>
+
+    <button id="toggle-sidebar">Показать/Скрыть сайдбар</button>
 
     <!-- JavaScript -->
     <script src="script.js"></script>

@@ -151,6 +151,7 @@ function minimax(newBoard, player) {
     }
     return moves[bestMove];
 }
+
 // Player settings
 function chooseSymbol(symbol) {
     humanPlayer = symbol;
@@ -158,3 +159,12 @@ function chooseSymbol(symbol) {
     document.getElementById("currentSymbol").innerText = humanPlayer;
     startGame();
 }
+
+document.getElementById("toggle-sidebar").addEventListener("click", function () {
+    const sidebar = document.querySelector(".contact-sidebar");
+    if (sidebar.classList.contains("hidden")) {
+        sidebar.classList.remove("hidden");
+    } else {
+        sidebar.classList.add("hidden");
+    }
+});

@@ -10,8 +10,9 @@ section {
 
 .container {
     width: 80%;
-    margin: auto;
     text-align: center;
+    margin: auto auto auto 260px;
+
 }
 
 /* Header */
@@ -20,27 +21,33 @@ header h1 {
     margin-bottom: 20px;
 }
 
+/* Score board */
 .score-board {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
     margin-top: 20px;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 20px;
 }
 
 .score-item {
     display: flex;
-    /* добавляем это */
     align-items: center;
-    /* и это */
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 1.5em;
     gap: 10px;
-    /* и это */
+    font-weight: 700;
+    border: 2px solid #ccc;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Score board */
+.score-value {
+    font-size: 1.8em;
+    margin-left: 8px;
+}
 
 .score-board ul {
     list-style: none;
@@ -74,23 +81,23 @@ header h1 {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Button styles */
-.reset-button,
-.symbol-selection button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin-top: 20px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
+.reset-button {
+    background: transparent;
     border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    cursor: pointer;
+    font-size: 24px;
 }
 
-.reset-button:hover {
-    background-color: #0056b3;
+.reset-button i.fas {
+    color: #4CAF50;
 }
+
+.reset-button:hover i.fas {
+    color: #45a049;
+}
+
+
+
 
 /* Score board */
 .score-board {
@@ -103,24 +110,20 @@ header h1 {
 
 #wins-container {
     background-color: #4CAF50;
-    /* green */
     color: white;
 }
 
 #draws-container {
     background-color: #FFC107;
-    /* amber */
     color: white;
 }
 
 #losses-container {
     background-color: #F44336;
-    /* red */
     color: white;
 }
 
-/* Symbol Selection */
-.symbol-selection {
+.controls {
     margin-top: 20px;
 }
 
@@ -129,6 +132,7 @@ header h1 {
     align-items: center;
     justify-content: center;
     gap: 10px;
+    margin-top: 20px;
 }
 
 /* Toggle Switch */
@@ -174,46 +178,6 @@ input:checked+.slider:before {
     transform: translateX(26px);
 }
 
-.reset-container {
-    display: inline-block;
-    position: relative;
-}
-
-.reset-button {
-    width: 24px;
-    height: 24px;
-    background-color: #f1f1f1;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.reset-button::before,
-.reset-button::after {
-    content: "";
-    position: absolute;
-    background-color: #333;
-}
-
-.reset-button::before {
-    width: 2px;
-    height: 8px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.reset-button::after {
-    width: 12px;
-    height: 2px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.reset-button:hover {
-    background-color: #ddd;
-}
-
 /* Vivid Reset Button */
 .vivid-reset-button {
     background: linear-gradient(to right, #ff416c, #ff4b2b);
@@ -242,15 +206,20 @@ input:checked+.slider:before {
 
 .contact-sidebar {
     position: fixed;
-    right: 0;
     top: 0;
-    width: 300px;
+    left: 0;
     height: 100%;
-    background-color: #f9f9f9;
-    border-left: 1px solid #ccc;
+    width: 250px;
+    background-color: #f1f1f1;
     padding: 20px;
     overflow-y: auto;
+    transition: left 0.3s ease;
 }
+
+.contact-sidebar.hidden {
+    left: -250px;
+}
+
 
 .contact-sidebar h2,
 .contact-sidebar h3 {
@@ -270,4 +239,24 @@ input:checked+.slider:before {
 .contact-sidebar a {
     text-decoration: none;
     color: #333;
+}
+
+#toggle-sidebar {
+    position: absolute;
+    bottom: 10px;
+    left: 10%;
+    transform: translateX(-50%);
+    background-color: #7D7D7D;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+    display: block;
+    margin: 10px auto 0;
+}
+
+
+#toggle-sidebar:hover {
+    background-color: #6D6D6D;
 }
