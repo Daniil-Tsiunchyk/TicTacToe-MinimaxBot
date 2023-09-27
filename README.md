@@ -10,7 +10,7 @@ TicTacToe-MinimaxBot aims to provide a challenging gameplay experience by levera
 
 ### :rocket: Try It Live! 
 
-Experience the game live [here](https://neural-enigma.github.io/TicTacToe-MinimaxBot/).
+Experience the game live [here](https://Daniil-Tsiunchyk.github.io/TicTacToe-MinimaxBot/).
 
 ## Features
 
@@ -23,7 +23,7 @@ Experience the game live [here](https://neural-enigma.github.io/TicTacToe-Minima
 1. **Clone the repository**
 
     ```bash
-    git clone https://github.com/Neural-Enigma/TicTacToe-MinimaxBot.git
+    git clone https://github.com/Daniil-Tsiunchyk/TicTacToe-MinimaxBot.git
     ```
 
 2. **Open the `index.html` file in your web browser.**
