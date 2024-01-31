@@ -44,6 +44,7 @@ function resetScoreBoard() {
     wins = losses = draws = 0;
     updateScoreBoard(null);
 }
+
 // Game logic functions
 function startGame() {
     document.getElementById("currentSymbol").innerText = humanPlayer;
@@ -71,7 +72,7 @@ function turn(squareId, player) {
 function checkWin(board, player) {
     const plays = board.reduce((a, e, i) => (e === player) ? a.concat(i) : a, []);
     for (let [index, win] of winningCombinations.entries()) {
-        if (win.every(elem => plays.includes(elem))) return { index, player };
+        if (win.every(elem => plays.includes(elem))) return {index, player};
     }
     return null;
 }
@@ -105,44 +106,47 @@ function checkTie() {
 }
 
 function minimax(newBoard, player) {
-    var availSpots = emptySquares();
+    let result;
+    let i;
+    let bestScore;
+    const availSpots = emptySquares();
 
     if (checkWin(newBoard, humanPlayer)) {
-        return { score: -10 };
+        return {score: -10};
     } else if (checkWin(newBoard, computerPlayer)) {
-        return { score: 10 };
+        return {score: 10};
     } else if (availSpots.length === 0) {
-        return { score: 0 };
+        return {score: 0};
     }
 
-    var moves = [];
-    for (var i = 0; i < availSpots.length; i++) {
-        var move = {};
+    const moves = [];
+    for (i = 0; i < availSpots.length; i++) {
+        const move = {};
         move.index = newBoard[availSpots[i]];
         newBoard[availSpots[i]] = player;
 
-        if (player == computerPlayer) {
-            var result = minimax(newBoard, humanPlayer);
+        if (player === computerPlayer) {
+            result = minimax(newBoard, humanPlayer);
             move.score = result.score;
         } else {
-            var result = minimax(newBoard, computerPlayer);
+            result = minimax(newBoard, computerPlayer);
             move.score = result.score;
         }
         newBoard[availSpots[i]] = move.index;
         moves.push(move);
     }
-    var bestMove;
+    let bestMove;
     if (player === computerPlayer) {
-        var bestScore = -10000;
-        for (var i = 0; i < moves.length; i++) {
+        bestScore = -10000;
+        for (i = 0; i < moves.length; i++) {
             if (moves[i].score > bestScore) {
                 bestScore = moves[i].score;
                 bestMove = i;
             }
         }
     } else {
-        var bestScore = 10000;
-        for (var i = 0; i < moves.length; i++) {
+        bestScore = 10000;
+        for (i = 0; i < moves.length; i++) {
             if (moves[i].score < bestScore) {
                 bestScore = moves[i].score;
                 bestMove = i;

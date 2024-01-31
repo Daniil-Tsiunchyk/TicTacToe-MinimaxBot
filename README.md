@@ -42,5 +42,5 @@ This project is distributed under the MIT License. See the `LICENSE` file for mo
 
 :mailbox_with_mail: Feel free to reach out if you have any questions or suggestions.
 
-- GitHub: [Neural-Enigma](https://github.com/Neural-Enigma)
+- GitHub: [Daniil-Tsiunchyk](https://github.com/Daniil-Tsiunchyk)
 - Email: fcad.td@gmail.com
